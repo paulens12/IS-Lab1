@@ -1,6 +1,6 @@
-%Classification using perceptron
+% Classification using perceptron
 
-%Reading apple images
+% Reading apple images
 A1=imread('apple_04.jpg');
 A2=imread('apple_05.jpg');
 A3=imread('apple_06.jpg');
@@ -11,24 +11,24 @@ A7=imread('apple_13.jpg');
 A8=imread('apple_17.jpg');
 A9=imread('apple_19.jpg');
 
-%Reading pears images
+% Reading pears images
 P1=imread('pear_01.jpg');
 P2=imread('pear_02.jpg');
 P3=imread('pear_03.jpg');
 P4=imread('pear_09.jpg');
 
-%Calculate for each image, colour and roundness
-%For Apples
-%1st apple image(A1)
+% Calculate for each image, colour and roundness
+% For Apples
+% 1st apple image(A1)
 hsv_value_A1=spalva_color(A1); %color
 metric_A1=apvalumas_roundness(A1); %roundness
-%2nd apple image(A2)
+% 2nd apple image(A2)
 hsv_value_A2=spalva_color(A2); %color
 metric_A2=apvalumas_roundness(A2); %roundness
-%3rd apple image(A3)
+% 3rd apple image(A3)
 hsv_value_A3=spalva_color(A3); %color
 metric_A3=apvalumas_roundness(A3); %roundness
-%4th apple image(A4)
+% 4th apple image(A4)
 hsv_value_A4=spalva_color(A4); %color
 metric_A4=apvalumas_roundness(A4); %roundness
 %5th apple image(A5)hsv_value_A5=spalva_color(A5); %color
