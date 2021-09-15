@@ -31,12 +31,12 @@ metric_A3=apvalumas_roundness(A3); %roundness
 % 4th apple image(A4)
 hsv_value_A4=spalva_color(A4); %color
 metric_A4=apvalumas_roundness(A4); %roundness
-%5th apple image(A5)hsv_value_A5=spalva_color(A5); %color
+% 5th apple image(A5)hsv_value_A5=spalva_color(A5); %color
 metric_A5=apvalumas_roundness(A5); %roundness
-%6th apple image(A6)
+% 6th apple image(A6)
 hsv_value_A6=spalva_color(A6); %color
 metric_A6=apvalumas_roundness(A6); %roundness
-%7th apple image(A7)
+% 7th apple image(A7)
 hsv_value_A7=spalva_color(A7); %color
 metric_A7=apvalumas_roundness(A7); %roundness
 %8th apple image(A8)
