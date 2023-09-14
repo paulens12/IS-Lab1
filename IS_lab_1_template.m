@@ -31,7 +31,8 @@ metric_A3=apvalumas_roundness(A3); %roundness
 % 4th apple image(A4)
 hsv_value_A4=spalva_color(A4); %color
 metric_A4=apvalumas_roundness(A4); %roundness
-% 5th apple image(A5)hsv_value_A5=spalva_color(A5); %color
+% 5th apple image(A5)
+hsv_value_A5=spalva_color(A5); %color
 metric_A5=apvalumas_roundness(A5); %roundness
 % 6th apple image(A6)
 hsv_value_A6=spalva_color(A6); %color
@@ -78,54 +79,70 @@ w1 = randn(1);
 w2 = randn(1);
 b = randn(1);
 
-% calculate weighted sum with randomly generated parameters
-%v1 = <...>; % write your code here
-% calculate current output of the perceptron 
-if v1 > 0
-	y = 1;
-else
-	y = -1;
+v = zeros(5,1);
+e = 0;
+errors = zeros(5,1);
+
+for i = 1:5
+    v(i) = P(1,i)*w1 + P(2,i)*w2 + b;
+    if v(i) > 0
+	    y = 1;
+    else
+	    y = -1;
+    end
+    errors(i) = T(i) - y;
+    e = e + abs(errors(i));
 end
-% calculate the error
-e1 = T(1) - y;
 
-% repeat the same for the rest 4 inputs x1 and x2
-% calculate wieghted sum with randomly generated parameters
-% v2 = <...> ; % write your code here
-% calculate current output of the perceptron 
-if v2 > 0
-	y = 1;
-else
-	y = -1;
-end
-% calculate the error
-e2 = T(2) - y;
-
-% <...> write the code for another 3 inputs
-
-% calculate the total error for these 5 inputs 
-e = abs(e1) + abs(e2) + abs(e3) + abs(e4) + abs(e5);
+eta = 0.3;
 
 % write training algorithm
-while e ~= 0 % executes while the total error is not 0
+while e > 0.1 % executes while the total error is not 0
 	% here should be your code of parameter update
-%   calculate output for current example
-% 
-%   calculate error for current example
-% 
-%   update parameters using current inputs ant current error
-% 	w1 = 
-%   w2 = 
-%   b = 
-% 
-%   Test how good are updated parameters (weights) on all examples used for training
-%   calculate outputs and errors for all 5 examples using current values of the parameter set {w1, w2, b}
-%   calculate 'v1', 'v2', 'v3',... 'v5'
-% 
-%   calculate 'y1', ..., 'y5'
-%     
-%   calculate 'e1', ... 'e5'
-    
+
+    for i = 1:5
+        w1 = w1 + eta * errors(i) * P(1,i);
+        w2 = w2 + eta * errors(i) * P(2,i);
+    end
+    b = b + eta * errors(i);
+
+    e = 0;
 	% calculate the total error for these 5 inputs 
-	e = abs(e1) + abs(e2) + abs(e3) + abs(e4) + abs(e5);
+    for i = 1:5
+        v(i) = P(1,i)*w1 + P(2,i)*w2 + b;
+        if v(i) > 0
+	        y = 1;
+        else
+	        y = -1;
+        end
+        errors(i) = T(i) - y;
+        e = e + abs(errors(i));
+    end
+    % [w1 w2 b]
+end
+
+hsv_apples = [hsv_value_A1 hsv_value_A2 hsv_value_A3 hsv_value_A4 hsv_value_A5 hsv_value_A6 hsv_value_A7 hsv_value_A8 hsv_value_A9];
+metric_apples = [metric_A1 metric_A2 metric_A3 metric_A4 metric_A5 metric_A6 metric_A7 metric_A8 metric_A9];
+apples = [hsv_apples;metric_apples];
+
+hsv_pears = [hsv_value_P1 hsv_value_P2 hsv_value_P3 hsv_value_P4];
+metric_pears = [metric_P1 metric_P2 metric_P3 metric_P4];
+pears = [hsv_pears;metric_pears];
+
+for i = 1:9
+    v = apples(1,i)*w1 + apples(2,i)*w2 + b;
+    if v > 0
+        disp("good apple")
+    else
+        disp("bad apple")
+    end
+end
+
+for i = 1:4
+    v = pears(1,i)*w1 + pears(2,i)*w2 + b;
+    if v > 0
+        disp("bad pear")
+    else
+        disp("good pear")
+    end
 end
